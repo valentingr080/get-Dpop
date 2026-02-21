@@ -8,7 +8,7 @@ def get_dpop():
         browser = p.webkit.launch(headless=True)
         page = browser.new_page()
 
-        with page.expect_request(lambda r: target in r.url) as req_info:
+        with page.expect_request(lambda r: target in r.url, timeout=100000) as req_info:
             page.goto(search_url)
 
         request = req_info.value
